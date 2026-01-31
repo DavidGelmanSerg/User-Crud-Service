@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: user-crud-service
+  datasource:
+    url: jdbc:h2:mem:testdb
+    name: sa
+    password: 123
+    driver-class-name: org.h2.Driver
+  liquibase:
+    change-log: classpath:/static/changelog-master.xml
