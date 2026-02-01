@@ -7,4 +7,4 @@ spring:
     password: 123
     driver-class-name: org.h2.Driver
   liquibase:
-    change-log: classpath:/static/changelog-master.xml
+    change-log: classpath:/liquibase/db.changelog-master.yaml
