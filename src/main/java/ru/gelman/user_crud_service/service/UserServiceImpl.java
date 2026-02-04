@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.gelman.user_crud_service.annotation.Logged;
 import ru.gelman.user_crud_service.entity.User;
 import ru.gelman.user_crud_service.exception.UserNotFoundException;
 import ru.gelman.user_crud_service.repository.UserRepository;
@@ -12,6 +13,7 @@ import ru.gelman.user_crud_service.repository.UserRepository;
 @Slf4j
 @Service
 @Transactional
+@Logged
 public class UserServiceImpl implements UserService {
     @Autowired
     private final UserRepository repository;
