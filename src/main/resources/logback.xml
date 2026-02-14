@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Аппендер для консоли, который обрабатывает уровень INFO -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-40.40logger %-36X{x-uuid} : %msg%n</pattern>
+        </encoder>
+        <!-- Указание кодировщика опущено -->
+    </appender>
+
+    <!-- Аппендер для файла, обрабатывающий уровень DEBUG -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./log/app.log</file>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-40.40logger [%file:%line] %-36X{x-uuid} : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Настройка логгера -->
+    <logger name="root" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+</configuration>
