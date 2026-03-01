@@ -9,6 +9,8 @@ import ru.gelman.user_crud_service.entity.User;
 import ru.gelman.user_crud_service.exception.UserNotFoundException;
 import ru.gelman.user_crud_service.repository.UserRepository;
 
+import java.util.Optional;
+
 
 @Slf4j
 @Service
@@ -55,5 +57,12 @@ public class UserServiceImpl implements UserService {
     public User getById(Long id) {
         log.info("searching user in repository by id {}", id);
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
+    public boolean hasUser(String login, String password) {
+        log.info("searching user in repository");
+        Optional<User> user = repository.findByLoginAndPassword(login, password);
+        return user.isPresent();
     }
 }
