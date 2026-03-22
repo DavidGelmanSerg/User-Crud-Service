@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface UserRepository extends ListCrudRepository<User, Long> {
     @Query(value = "SELECT u FROM User u WHERE u.login = :login and u.password = :password")
     Optional<User> findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
+
+    Optional<User> findByLogin(String login);
 }

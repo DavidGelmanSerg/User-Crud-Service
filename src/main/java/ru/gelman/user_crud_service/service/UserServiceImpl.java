@@ -1,7 +1,9 @@
 package ru.gelman.user_crud_service.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gelman.user_crud_service.annotation.Logged;
@@ -16,19 +18,18 @@ import java.util.Optional;
 @Service
 @Transactional
 @Logged
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     @Autowired
     private final UserRepository repository;
-
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private final PasswordEncoder encoder;
 
     @Override
     public User create(String login, String password) {
         User user = new User();
         user.setLogin(login);
-        user.setPassword(password);
+        user.setPassword(encoder.encode(password));
 
         log.info("saving new user {} to repository", user);
         return repository.save(user);
